@@ -30,7 +30,7 @@ namespace bcandc.Commands
 
 			if (arguments.Count == 0)
 			{
-				response = "No text";
+				response = "No text ";
 				return false;
 			}
 			foreach (string txt in arguments)
