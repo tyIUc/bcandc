@@ -1,30 +1,25 @@
-﻿using Exiled.API.Features;
+﻿using PluginAPI.Core.Attributes;
 using System;
+using PluginAPI.Events;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PluginAPI.Core;
+using PluginAPI.Commands;
 
 namespace bcandc
 {
-    public class Plugin : Plugin<Config>
+    public class Plugin
     {
-        public override string Name { get; } = "bcandc ";
-        public override string Author { get; } = "tyIUc";
-        public override Version Version { get; } = new Version(1, 0, 0);
-
-        public override Version RequiredExiledVersion { get; } = new Version(1, 0, 0);
-		public override void OnEnabled()
-		{
-			Log.Debug("bcandc PLUGIN login Enabled");
-			base.OnEnabled();
-		}
-
-		public override void OnDisabled()
-		{
-
-			Log.Debug("bcandc PLUGIN Disabled");
-			base.OnDisabled();
-		}
-	}
+        [PluginEntryPoint("bcandc", "1.0.0", "Chat", "tyIUc")]
+        void Enabled()
+        {
+           //PluginAPI.Events.EventManager.RegisterEvents(this);
+            Log.Debug($"bcandc PLUGIN login Enabled v:1.0.0");
+           
+        }
+        //[PluginConfig]
+        //public Config Config;
+    }
 }

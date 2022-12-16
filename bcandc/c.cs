@@ -1,5 +1,6 @@
-using CommandSystem;
-using Exiled.API.Features;
+﻿using CommandSystem;
+using PlayerRoles;
+using PluginAPI.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace bcandc.Commands
 
 		public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
 		{
-			Player player = Player.Get(sender);
+			Player player = sender as Player;
 			string text = "";
 
 			if (arguments.Count == 0)
@@ -37,12 +38,12 @@ namespace bcandc.Commands
 			{
 				text = text + txt;
 			}
-			foreach (Player player1 in Player.List)
+			foreach (Player player1 in Player.GetPlayers())
 			{
-				if (player1.Role.Team == player.Role.Team)
+				if (player1.Role.GetTeam() == player.Role.GetTeam())
 				{
 
-					Map.Broadcast(7, $"[{player.Role.Team}][Team]{player.Nickname}: {text}", global::Broadcast.BroadcastFlags.Normal);
+					Server.SendBroadcast($"[{player.Role.GetTeam()}][Team]{player.Nickname}: {text}",7 ,global::Broadcast.BroadcastFlags.Normal);
 
 				}
 			

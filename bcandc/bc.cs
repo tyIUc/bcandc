@@ -1,5 +1,5 @@
-using CommandSystem;
-using Exiled.API.Features;
+﻿using CommandSystem;
+using PluginAPI.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,19 +25,19 @@ namespace bcandc.Commands
 
 		public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
 		{
-			Player player = Player.Get(sender);
+			Player player = sender as Player;
 			string text = "";
 
 			if (arguments.Count == 0)
 			{
-				response = "No text ";
+				response = "No text";
 				return false;
 			}
 			foreach (string txt in arguments)
 		    {
 					text = text +  txt;
 			}
-			Map.Broadcast(7 , $"[Global]{player.Nickname}: {text}", global::Broadcast.BroadcastFlags.Normal);
+			Server.SendBroadcast($"[Global]{player.Nickname}: {text}", 7,global::Broadcast.BroadcastFlags.Normal);
 			
 			response = "Sent successfully";
 			return true;
