@@ -1,6 +1,7 @@
 ﻿using CommandSystem;
 using PlayerRoles;
 using PluginAPI.Core;
+using RemoteAdmin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,35 +23,37 @@ namespace bcandc.Commands
 		};
 
 
-		public string Description { get; } = "Team Chat Commands";
+		public string Description { get; } = "团队打字指令";
 
 		public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
 		{
-			Player player = sender as Player;
+			Player player = Player.Get(((PlayerCommandSender)sender).ReferenceHub);
 			string text = "";
 
 			if (arguments.Count == 0)
 			{
-				response = "No text";
+				response = "没有输入文本";
 				return false;
 			}
-			foreach (string txt in arguments)
+            foreach (string txt in arguments)
 			{
 				text = text + txt;
 			}
-			foreach (Player player1 in Player.GetPlayers())
+			foreach (Player player1 in Server.GetPlayers())
 			{
+				
 				if (player1.Role.GetTeam() == player.Role.GetTeam())
 				{
+		
 
-					Server.SendBroadcast($"[{player.Role.GetTeam()}][Team]{player.Nickname}: {text}",7 ,global::Broadcast.BroadcastFlags.Normal);
+					player1.SendBroadcast( $"[<color=green>{player.Role.ToString()}</color>][<color=yellow>团队</color>]<color=#00BFFF>{player.Nickname}</color>: {text}",7);
 
 				}
 			
 			}
 			
 
-			response = "Sent successfully";
+			response = "发送成功";
 			return true;
 		}
 	}
