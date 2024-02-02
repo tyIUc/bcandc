@@ -21,7 +21,7 @@ namespace bcandc.Commands
 		};
 
 
-		public string Description { get; } = "Team Chat Commands";
+		public string Description { get; } = "Team Chat Commands-团队打字";
 
 		public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
 		{
@@ -35,14 +35,14 @@ namespace bcandc.Commands
 			}
 			foreach (string txt in arguments)
 			{
-				text = text + txt;
+				text = text +""+ txt;
 			}
 			foreach (Player player1 in Player.List)
 			{
 				if (player1.Role.Team == player.Role.Team)
 				{
 
-					Map.Broadcast(7, $"[{player.Role.Team}][Team]{player.Nickname}: {text}", global::Broadcast.BroadcastFlags.Normal);
+					player1.Broadcast(7, $"[Team][{player.Role.Type.ToString()}]{player.Nickname}: {text}");
 
 				}
 			
