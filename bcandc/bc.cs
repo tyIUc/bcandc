@@ -21,7 +21,7 @@ namespace bcandc.Commands
 		};
 
 	
-		public string Description { get; } = "Global Chat Commands";
+		public string Description { get; } = "Global Chat Commands-全体聊天";
 
 		public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
 		{
@@ -35,9 +35,9 @@ namespace bcandc.Commands
 			}
 			foreach (string txt in arguments)
 		    {
-					text = text +  txt;
+					text = text + ""+ txt;
 			}
-			Map.Broadcast(7 , $"[Global]{player.Nickname}: {text}", global::Broadcast.BroadcastFlags.Normal);
+			Map.Broadcast(7 , $"[全体]{player.Nickname}: {text}", global::Broadcast.BroadcastFlags.Normal);
 			
 			response = "Sent successfully";
 			return true;
