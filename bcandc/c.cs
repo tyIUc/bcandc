@@ -42,7 +42,7 @@ namespace bcandc.Commands
 				if (player1.Role.Team == player.Role.Team)
 				{
 
-					player1.Broadcast(7, $"[Team][{player.Role.Type.ToString()}]{player.Nickname}: {text}");
+					player1.Broadcast(7, $"[Team]<color={player.Role.Team.GetColor()}>[{player.Role.Type.GetRolename()}]</color>{player.Nickname}: {text}");
 
 				}
 			

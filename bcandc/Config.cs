@@ -13,7 +13,7 @@ namespace bcandc
     {
         [Description("Plugin true/false")]
         public bool IsEnabled { get; set; } = true;
-
+        public bool Debug { get; set; } = false;
 
 
     }

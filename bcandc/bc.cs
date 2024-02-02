@@ -37,7 +37,7 @@ namespace bcandc.Commands
 		    {
 					text = text + ""+ txt;
 			}
-			Map.Broadcast(7 , $"[全体]{player.Nickname}: {text}", global::Broadcast.BroadcastFlags.Normal);
+			Map.Broadcast(7 , $"[全体]<color={player.Role.Team.GetColor()}>[{player.Nickname}]</color>: {text}", global::Broadcast.BroadcastFlags.Normal);
 			
 			response = "Sent successfully";
 			return true;
